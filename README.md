@@ -4,6 +4,12 @@
 
 Rhythm Rush is a browser-based rhythm tapping game inspired by the popular Piano Tiles. It challenges players to tap on falling tiles in time as they cross the bottom of the screen. Built with HTML5 Canvas and JavaScript, the game runs entirely in the browser and adapts to both desktop and mobile screens.
 
+## Live Demo
+
+Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation required – just open the link and start playing.)
+
+    https://adityapatil343.github.io/RhythmRush/
+
 ## Features
 
 Canvas-Based, Responsive Gameplay: Smooth graphics are rendered on an HTML5 canvas. The layout scales to different screen sizes (desktop or mobile) for a responsive experience.
@@ -17,12 +23,6 @@ Audio Feedback: Enjoy simple sound effects for each successful hit, plus a disti
 Pause and Resume Controls: Pause the game at any time and resume exactly where you left off using the on-screen button or the spacebar. This allows you to take breaks and continue the game seamlessly.
 
 Keyboard & Touch/Mouse Input: Supports multiple input methods – tap with a finger on touchscreens, click with a mouse, or use keyboard controls (e.g. press the Space bar to start/pause the game).
-
-## Live Demo
-
-Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation required – just open the link and start playing.)
-
-    https://adityapatil343.github.io/RhythmRush/
 
 ## How to Play
 
