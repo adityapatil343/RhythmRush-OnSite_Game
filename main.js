@@ -30,28 +30,28 @@
 
   const themeBtn = document.getElementById('themeBtn');
   
-const THEME_KEY = 'rr_theme';
-const themeBtn = document.getElementById('themeBtn');
+  const THEME_KEY = 'rr_theme';
+  const themeBtn = document.getElementById('themeBtn');
 
-// Apply theme and update button label
-function applyTheme(theme) {
+  // Apply theme and update button label
+  function applyTheme(theme) {
   const isDark = theme === 'dark';
   document.body.classList.toggle('dark', isDark);
   if (themeBtn) themeBtn.textContent = isDark ? 'Theme: Dark' : 'Theme: Light';
-}
+  }
 
-// Load saved theme or default to dark
-const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-applyTheme(savedTheme);
+  // Load saved theme or default to dark
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+  applyTheme(savedTheme);
 
-// Toggle theme on button click and persist
-if (themeBtn) {
+  // Toggle theme on button click and persist
+  if (themeBtn) {
   themeBtn.addEventListener('click', () => {
     const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
     applyTheme(nextTheme);
     localStorage.setItem(THEME_KEY, nextTheme);
-  });
-}
+    });
+  }
   /**
    * Show or hide the pause button based on game state. Only visible when the game is actively running.
    */
