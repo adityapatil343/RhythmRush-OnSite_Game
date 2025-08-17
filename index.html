@@ -3,39 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- Updated game title -->
   <title>Rhythm Rush</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Inline styling for the play guide -->
-  <style>
-    .play-guide {
-      margin: 20px auto;
-      max-width: 500px;
-      background: var(--panel);
-      border-radius: 10px;
-      padding: 16px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      color: var(--ui);
-      line-height: 1.5;
-    }
-    .play-guide h2 {
-      margin-bottom: 8px;
-      font-size: 1.2rem;
-    }
-    .play-guide ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-    .play-guide kbd {
-      background: #eee;
-      border-radius: 3px;
-      padding: 2px 4px;
-      font-family: inherit;
-    }
-  </style>
 </head>
-<body>
+<body class="dark"> <!-- Default to dark mode -->
+
   <!-- Site branding and repo link -->
   <header class="site-header">
     <div class="site-title">Rhythm Rush</div>
@@ -44,6 +16,7 @@
     </div>
   </header>
 
+  <!-- HUD (score, controls, high score) -->
   <header class="hud">
     <div class="score">Score: <span id="score">0</span></div>
     <div class="controls">
@@ -54,9 +27,11 @@
     <div class="highscore">Best: <span id="highScore">0</span></div>
   </header>
 
+  <!-- Game container -->
   <main class="game-wrap">
     <canvas id="gameCanvas" tabindex="0"></canvas>
 
+    <!-- Overlay / modal -->
     <div id="overlay" class="overlay hidden">
       <div class="overlay-card" id="overlayCard">
         <h1 id="overlayTitle">How to Play</h1>
@@ -66,7 +41,7 @@
             <li><strong>Correct hit</strong> = +1 point. Tiles light up when hit.</li>
             <li><strong>Wrong tap</strong> (tapping where there is no tile) or <strong>missing a tile</strong> ends the game.</li>
             <li>Controls: tap with finger, click with mouse. Press <strong>Space</strong> to start/pause on keyboard.</li>
-            <li>Try to beat your best score — it's saved locally in your browser.</li>
+            <li>Try to beat your best score — it’s saved locally in your browser.</li>
           </ul>
         </div>
         <div class="overlay-actions">
@@ -78,14 +53,13 @@
     </div>
   </main>
 
-  <!-- Small play guide section -->
+  <!-- Small, always-visible play guide -->
   <section class="play-guide">
     <h2>How to Play</h2>
     <ul>
-      <li>Tap or click the dark tiles when they cross the blue hit line.</li>
-      <li>A correct tap adds a point; tapping empty space or missing a tile ends the game.</li>
-      <li>Use the <kbd>Space</kbd> key to start or pause the game.</li>
-      <li>Try the <kbd>Theme</kbd> button to switch between light and dark modes.</li>
+      <li>Tap the dark tiles as they cross the blue hit line.</li>
+      <li>Each correct tap adds a point; a wrong tap or miss ends the game.</li>
+      <li>Press <kbd>Space</kbd> to start/pause. Use the <strong>Theme</strong> button to switch looks.</li>
     </ul>
   </section>
 
