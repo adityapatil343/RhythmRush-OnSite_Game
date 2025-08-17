@@ -50,7 +50,7 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
   - A different sound plays.  
   - An overlay shows your final score and your best score.  
 
-## Open Source and Contributing 🤝</>
+## Open Source and Contributing 🤝🛠️
 
 - **Rhythm Rush** is open source under the MIT License.  
 - Anyone is welcome to use it, improve it, or share new ideas.  
