@@ -14,17 +14,12 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 
 ## Features
 
-Canvas-Based, Responsive Gameplay: Smooth graphics are rendered on an HTML5 canvas. The layout scales to different screen sizes (desktop or mobile) for a responsive experience.
-
-Light and Dark Theme Support: Toggle between light mode and dark mode for a comfortable visual experience in different environments.
-
-Scoring and High Score Tracking: Earn points for each tile you hit. Your current score is displayed live, and your all-time best score is saved locally and shown as the “Best” score.
-
-Audio Feedback: Enjoy simple sound effects for each successful hit, plus a distinctive tone when the game ends, providing audio feedback as you play.
-
-Pause and Resume Controls: Pause the game at any time and resume exactly where you left off using the on-screen button or the spacebar. This allows you to take breaks and continue the game seamlessly.
-
-Keyboard & Touch/Mouse Input: Supports multiple input methods – tap with a finger on touchscreens, click with a mouse, or use keyboard controls (e.g. press the Space bar to start/pause the game).
+- **Responsive Gameplay** – Smooth HTML5 Canvas graphics that adapt to any screen size, desktop or mobile.  
+- **Light & Dark Themes** – Switch between light and dark mode with a single click.  
+- **Scoring & High Score** – Live score updates and your best score saved locally in the browser.  
+- **Audio Feedback** – Simple sound effects for hits and a unique tone when the game ends.  
+- **Pause & Resume** – Take a break anytime and continue right where you left off.  
+- **Multiple Inputs** – Play with touch, mouse clicks, or keyboard (Space bar to start/pause).  
 
 ## How to Play
 
