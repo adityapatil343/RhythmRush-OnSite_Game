@@ -21,9 +21,7 @@ Keyboard & Touch/Mouse Input: Supports multiple input methods – tap with a fin
 
 Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation required – just open the link and start playing.)
 
-'''
-https://adityapatil343.github.io/RhythmRush/
-'''
+    https://adityapatil343.github.io/RhythmRush/
 
 ## How to Play
 
