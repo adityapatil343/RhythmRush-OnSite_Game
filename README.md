@@ -1,4 +1,4 @@
-# Rhythm Rush
+# Rhythm Rush 🎮🎲
 
 <img width="1391" height="623" alt="image" src="https://github.com/user-attachments/assets/1afa5af5-e8c1-4498-be9f-5d6fc921af05" />
 
@@ -6,13 +6,13 @@ Rhythm Rush is a browser-based rhythm game inspired by *Piano Tiles*.
 Tap the falling tiles as they reach the bottom line to score points.  
 Built with HTML5 Canvas and JavaScript, it works smoothly on both desktop and mobile. 
 
-## Live Demo
+## Live Demo 🌐🟢
 
 Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation required – just open the link and start playing.)
 
     https://adityapatil343.github.io/RhythmRush/
 
-## Features
+## Features ⚙️✨
 
 - **Responsive Gameplay** – Smooth HTML5 Canvas graphics that adapt to any screen size, desktop or mobile.  
 - **Light & Dark Themes** – Switch between light and dark mode with a single click.  
@@ -21,7 +21,7 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 - **Pause & Resume** – Take a break anytime and continue right where you left off.  
 - **Multiple Inputs** – Play with touch, mouse clicks, or keyboard (Space bar to start/pause).  
 
-## How to Play
+## How to Play 🤔💡
 
 - **Start the game:** Click the “Play” button on the screen (or press the **Space** key) to begin a round.  
 
@@ -35,7 +35,7 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 
 - **High score:** After the game is over, your final score is shown and compared to your best score. Try again to beat it!  
 
-## How it Works (Game Logic)
+## How it Works (Game Logic) 📝ℹ️
 
 - The game runs completely in your browser using **HTML5 canvas** for graphics.  
 - A continuous game loop makes the tiles fall smoothly down the screen.  
@@ -50,7 +50,7 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
   - A different sound plays.  
   - An overlay shows your final score and your best score.  
 
-## Open Source and Contributing
+## Open Source and Contributing 🤝</>
 
 - **Rhythm Rush** is open source under the MIT License.  
 - Anyone is welcome to use it, improve it, or share new ideas.  
