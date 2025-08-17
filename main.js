@@ -1,43 +1,45 @@
-// Magic Tiles - Minimal playable client-side MVP
-// No dependencies. Uses canvas and requestAnimationFrame.
-
 (() => {
   // Config
   const COLS = 4;
   // Theme colors (should match CSS variables)
   const TILE_COLOR = '#222';
-  const HIT_COLOR = '#5e60ce';
-  const TILE_HEIGHT_RATIO = 0.18; // tile height relative to canvas height
-  const BASE_SPEED = 220; // pixels / second (initial)
-  const SPEED_INCREASE_RATE = 8; // per 10 seconds
+  const HIT_COLOR  = '#5e60ce';
+  const TILE_HEIGHT_RATIO = 0.18;   // tile height relative to canvas height
+  const BASE_SPEED         = 220;   // pixels / second (initial)
+  const SPEED_INCREASE_RATE = 8;    // per 10 seconds
   const INITIAL_SPAWN_INTERVAL = 900; // ms
-  const SPAWN_DECAY = 0.98; // multiply interval each difficulty step
-  const HIT_WINDOW = 36; // px tolerance around hitLine
+  const SPAWN_DECAY = 0.98;         // multiply interval each difficulty step
+  const HIT_WINDOW = 36;            // px tolerance around hitLine
   const HIGH_SCORE_KEY = 'rhythmRush_highScore';
 
-  // DOM
-  const canvas = document.getElementById('gameCanvas');
-  const scoreEl = document.getElementById('score');
-  const highScoreEl = document.getElementById('highScore');
-  const pauseBtn = document.getElementById('pauseBtn');
-  const startBtn = document.getElementById('startBtn');
-  const overlay = document.getElementById('overlay');
+  // DOM elements
+  const canvas       = document.getElementById('gameCanvas');
+  const scoreEl      = document.getElementById('score');
+  const highScoreEl  = document.getElementById('highScore');
+  const pauseBtn     = document.getElementById('pauseBtn');
+  const startBtn     = document.getElementById('startBtn');
+  const overlay      = document.getElementById('overlay');
   const overlayTitle = document.getElementById('overlayTitle');
-  const overlayText = document.getElementById('overlayText');
-  const retryBtn = document.getElementById('retryBtn');
-  const quitBtn = document.getElementById('quitBtn');
+  const overlayText  = document.getElementById('overlayText');
+  const retryBtn     = document.getElementById('retryBtn');
+  const quitBtn      = document.getElementById('quitBtn');
   const overlayPlayBtn = document.getElementById('overlayPlayBtn');
+  const themeBtn     = document.getElementById('themeBtn');
+  const gameWrap     = document.querySelector('.game-wrap');
+  const ctx          = canvas.getContext('2d');
 
-  const themeBtn = document.getElementById('themeBtn');
-  
+  // ---------------------------------------------------------------------------
+  // THEME PERSISTENCE AND TOGGLE
+  // ---------------------------------------------------------------------------
   const THEME_KEY = 'rr_theme';
-  const themeBtn = document.getElementById('themeBtn');
 
-  // Apply theme and update button label
   function applyTheme(theme) {
-  const isDark = theme === 'dark';
-  document.body.classList.toggle('dark', isDark);
-  if (themeBtn) themeBtn.textContent = isDark ? 'Theme: Dark' : 'Theme: Light';
+    const isDark = theme === 'dark';
+    document.body.classList.toggle('dark', isDark);
+    if (themeBtn) {
+      // Optional: update button text to reflect current theme
+      themeBtn.textContent = isDark ? 'Theme: Dark' : 'Theme: Light';
+    }
   }
 
   // Load saved theme or default to dark
@@ -46,43 +48,29 @@
 
   // Toggle theme on button click and persist
   if (themeBtn) {
-  themeBtn.addEventListener('click', () => {
-    const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
-    applyTheme(nextTheme);
-    localStorage.setItem(THEME_KEY, nextTheme);
+    themeBtn.addEventListener('click', () => {
+      const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      localStorage.setItem(THEME_KEY, nextTheme);
     });
   }
-  /**
-   * Show or hide the pause button based on game state. Only visible when the game is actively running.
-   */
-  function updateControls() {
-    if (!state || !state.running || state.gameOver) {
-      pauseBtn.style.display = 'none';
-    } else {
-      pauseBtn.style.display = '';
-    }
-  }
 
-  // Wrapper for shake animation
-  const gameWrap = document.querySelector('.game-wrap');
-
-  const ctx = canvas.getContext('2d');
+  // ---------------------------------------------------------------------------
+  // GAME STATE SETUP
+  // ---------------------------------------------------------------------------
+  let state = null;
 
   // Responsive canvas size
   function resizeCanvas() {
-    // keep device pixel ratio for crisp rendering
     const rect = canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.floor(rect.width * dpr);
+    const dpr  = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width  = Math.floor(rect.width * dpr);
     canvas.height = Math.floor(rect.height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   window.addEventListener('resize', resizeCanvas);
 
-  // Game state
-  let state = null;
-
-  // Simple audio feedback via WebAudio
+  // WebAudio for hits/misses
   let audioCtx = null;
   function ensureAudio() {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -100,8 +88,8 @@
       o.start();
       g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + time);
       o.stop(audioCtx.currentTime + time + 0.02);
-    } catch (e) {
-      // ignore if audio blocked
+    } catch {
+      /* ignore if audio blocked */
     }
   }
 
@@ -116,7 +104,7 @@
 
   function newState() {
     return {
-      tiles: [], // {id, col, y, hit}
+      tiles: [],        // {id, col, y, hit}
       score: 0,
       highScore: loadHighScore(),
       running: false,
@@ -131,8 +119,8 @@
   }
 
   // Helpers
-  function nowMs() { return performance.now(); }
-  function randId() { return Math.random().toString(36).slice(2, 9); }
+  const nowMs  = () => performance.now();
+  const randId = () => Math.random().toString(36).slice(2, 9);
 
   function spawnTile() {
     const col = Math.floor(Math.random() * COLS);
@@ -140,14 +128,14 @@
       id: randId(),
       col,
       y: -tileHeight(), // start above canvas
-      hit: false
+      hit: false,
     };
     state.tiles.push(tile);
     state.lastSpawnAt = nowMs();
   }
 
   function tileHeight() {
-    return canvas.height / (ctx.getTransform().a || 1) * TILE_HEIGHT_RATIO / (window.devicePixelRatio || 1);
+    return (canvas.height / (ctx.getTransform().a || 1)) * TILE_HEIGHT_RATIO / (window.devicePixelRatio || 1);
   }
 
   function columnWidth() {
@@ -156,16 +144,29 @@
   }
 
   function hitLineY() {
-    // place hit line around 82% of canvas height
+    // Adjust the line position (e.g. 65% of canvas height)
     const rect = canvas.getBoundingClientRect();
     return rect.height * 0.65;
   }
 
+  /**
+   * Show or hide the pause button based on game state.
+   * Only visible when the game is actively running.
+   */
+  function updateControls() {
+    if (!state || !state.running || state.gameOver) {
+      pauseBtn.style.display = 'none';
+    } else {
+      pauseBtn.style.display = '';
+    }
+  }
+
+  // Update game state each frame
   function update(dt) {
     if (!state.running || state.paused || state.gameOver) return;
     state.elapsed += dt / 1000;
 
-    // difficulty scaling: slightly increase speed over time
+    // difficulty scaling: increase speed over time
     const speed = state.baseSpeed + SPEED_INCREASE_RATE * Math.floor(state.elapsed / 10);
 
     // spawn logic
@@ -176,30 +177,28 @@
     }
 
     // move tiles
-    for (let t of state.tiles) {
+    for (const t of state.tiles) {
       t.y += speed * (dt / 1000);
     }
 
-    // check passes beyond hit window -> miss -> game over
+    // check for misses
     const hitY = hitLineY();
-    for (let t of state.tiles) {
+    for (const t of state.tiles) {
       if (!t.hit && t.y > hitY + HIT_WINDOW + tileHeight()) {
-        // tile passed below the hit window: missed
         doGameOver();
         return;
       }
     }
 
-    // cleanup hit tiles (animated removal could be added)
+    // cleanup removed tiles
     state.tiles = state.tiles.filter(t => !t._removed);
   }
 
   function draw() {
-    // clear
     const rect = canvas.getBoundingClientRect();
     ctx.clearRect(0, 0, rect.width, rect.height);
 
-    // draw column separators
+    // column separators
     const w = rect.width;
     const h = rect.height;
     const colW = w / COLS;
@@ -208,18 +207,18 @@
       ctx.fillRect(i * colW - 1, 0, 2, h);
     }
 
-    // draw hit line
+    // hit line
     const hitY = hitLineY();
-    // subtle colored hit zone
     ctx.fillStyle = 'rgba(0, 122, 255, 0.12)';
     ctx.fillRect(0, hitY - 2, w, 4);
 
-    // draw tiles
+    // tiles
     const tH = tileHeight();
-    for (let t of state.tiles) {
+    for (const t of state.tiles) {
       const x = t.col * colW + 8;
       const tileW = colW - 16;
       const tileH = tH;
+
       // shadow
       ctx.fillStyle = 'rgba(0,0,0,0.06)';
       ctx.fillRect(x, t.y + 6, tileW, tileH);
@@ -228,16 +227,16 @@
       ctx.fillStyle = t.hit ? HIT_COLOR : TILE_COLOR;
       roundRect(ctx, x, t.y, tileW, tileH, 10, true, false);
 
-      // small gap indicator (makes it feel like a piano tile)
+      // small gap indicator
       ctx.fillStyle = 'rgba(255,255,255,0.03)';
       ctx.fillRect(x + 6, t.y + 6, tileW - 12, 10);
     }
   }
 
   function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
-    if (typeof stroke == 'undefined') stroke = true;
+    if (typeof stroke === 'undefined') stroke = true;
     if (typeof radius === 'undefined') radius = 5;
-    if (typeof radius === 'number') radius = {tl: radius, tr: radius, br: radius, bl: radius};
+    if (typeof radius === 'number') radius = { tl: radius, tr: radius, br: radius, bl: radius };
     ctx.beginPath();
     ctx.moveTo(x + radius.tl, y);
     ctx.lineTo(x + width - radius.tr, y);
@@ -264,11 +263,11 @@
 
   function startGame() {
     state = newState();
-    state.running = true;
-    state.gameOver = false;
-    state.paused = false;
-    state.lastTime = 0;
-    state.lastSpawnAt = nowMs() + 120; // small delay before first tile
+    state.running   = true;
+    state.gameOver  = false;
+    state.paused    = false;
+    state.lastTime  = 0;
+    state.lastSpawnAt = nowMs() + 120;
     state.spawnInterval = INITIAL_SPAWN_INTERVAL;
     scoreEl.textContent = '0';
     highScoreEl.textContent = String(state.highScore);
@@ -288,26 +287,23 @@
       overlay.classList.remove('hidden');
     } else {
       overlay.classList.add('hidden');
-      // resume clock
-      state.lastTime = 0;
+      state.lastTime = 0; // reset timing on resume
     }
     updateControls();
   }
 
   function doHit(tile) {
     tile.hit = true;
-    // delay removal so the player sees the hit color briefly
+    // Delay removal so hit color shows briefly
     setTimeout(() => {
       tile._removed = true;
     }, 180);
     state.score += 1;
     playTone(950 - Math.min(400, state.score * 4), 0.06, 'square');
     scoreEl.textContent = String(state.score);
-    // update possible high score live
     if (state.score > state.highScore) {
       state.highScore = state.score;
       saveHighScore(state.highScore);
-      // trigger pulse animation on high score element
       highScoreEl.classList.add('pulse');
       setTimeout(() => highScoreEl.classList.remove('pulse'), 600);
     }
@@ -316,13 +312,11 @@
   function doGameOver() {
     if (!state || state.gameOver) return;
     state.gameOver = true;
-    state.running = false;
+    state.running  = false;
     playTone(160, 0.26, 'sawtooth');
     overlayTitle.textContent = 'Game Over';
-    overlayText.innerHTML = `<p>Score: ${state.score}  •  Best: ${state.highScore}</p>`;
+    overlayText.innerHTML = `<p>Score: ${state.score} • Best: ${state.highScore}</p>`;
     overlay.classList.remove('hidden');
-    // show retry / quit
-    // shake the game area for feedback
     if (gameWrap) {
       gameWrap.classList.add('shake');
       setTimeout(() => gameWrap.classList.remove('shake'), 400);
@@ -333,14 +327,12 @@
   // Input handling
   function handlePointer(evt) {
     if (!state || !state.running || state.paused || state.gameOver) return;
-    // unify pointer events
     const rect = canvas.getBoundingClientRect();
-    const x = (evt.clientX !== undefined ? evt.clientX : evt.touches[0].clientX) - rect.left;
-    const col = Math.floor(x / (rect.width / COLS));
+    const x    = (evt.clientX !== undefined ? evt.clientX : evt.touches[0].clientX) - rect.left;
+    const col  = Math.floor(x / (rect.width / COLS));
     const hitY = hitLineY();
-    // find tile in the same column within hit window
-    let found = null;
-    for (let t of state.tiles) {
+    let found  = null;
+    for (const t of state.tiles) {
       if (t.col !== col || t.hit) continue;
       const centerY = t.y + tileHeight() / 2;
       if (Math.abs(centerY - hitY) <= HIT_WINDOW) {
@@ -351,7 +343,6 @@
     if (found) {
       doHit(found);
     } else {
-      // wrong tap -> game over
       doGameOver();
     }
   }
@@ -363,7 +354,6 @@
   });
 
   startBtn.addEventListener('click', () => {
-    // start from overlay / initial
     startGame();
   });
 
@@ -372,25 +362,20 @@
   });
 
   quitBtn.addEventListener('click', () => {
-    // show instructions again and clear active game
     showInstructions();
     overlay.classList.remove('hidden');
     state = null;
   });
 
-  // New overlay Play button to start the game from the instructions screen
   overlayPlayBtn.addEventListener('click', () => {
     startGame();
   });
 
-  // pointer events on canvas
   canvas.addEventListener('pointerdown', (e) => {
-    // ensure audio allowed after user gesture
     ensureAudio();
     handlePointer(e);
   });
 
-  // keyboard: space to start/pause
   window.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
       e.preventDefault();
@@ -419,20 +404,10 @@
   function init() {
     resizeCanvas();
     state = newState();
-    // show initial overlay with instructions
     showInstructions();
-    // draw loop
     requestAnimationFrame(gameLoop);
-    // render initial high score
     highScoreEl.textContent = String(state.highScore);
     updateControls();
-
-    // Theme toggle
-    if (themeBtn) {
-      themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-      });
-    }
   }
 
   // Start
