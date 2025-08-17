@@ -5,9 +5,9 @@
 Rhythm Rush is a browser-based rhythm game inspired by *Piano Tiles*. Tap the falling tiles as they reach the bottom line to score points. 
 Built with HTML5 Canvas and JavaScript, it works smoothly on both desktop and mobile. 
 
-## Live Demo 🌐🟢
+## Check it Out 🌐🟢
 
-Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation required – just open the link and start playing.)
+Play the game right in your browser (no install needed): 
 
     https://adityapatil343.github.io/RhythmRush/
 
