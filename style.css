@@ -221,6 +221,35 @@ body.dark {
   40%, 80% { transform: translateX(6px); }
 }
 
+/* play guide styling */
+.play-guide {
+  margin: 20px auto;
+  max-width: 500px;
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  color: var(--ui);
+  line-height: 1.5;
+}
+
+.play-guide h2 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.play-guide ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.play-guide kbd {
+  background: #eee;
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-family: inherit;
+}
+
 /* pulse animation for highscore updates */
 .pulse {
   animation: pulse 0.6s ease;
