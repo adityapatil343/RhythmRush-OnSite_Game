@@ -11,7 +11,7 @@ Play the game right in your browser (no install needed):
 
     https://adityapatil343.github.io/RhythmRush/
 
-## How to Play 🤔💡
+## 🤔💡 How to Play 
 
 - **Start the game:** Click the “Play” button on the screen (or press the **Space** key) to begin a round.  
 
@@ -27,7 +27,7 @@ Play the game right in your browser (no install needed):
 
 ---
 
-## Features ⚙️✨
+## ⚙️✨ Features 
 
 - **Responsive Gameplay** – Smooth HTML5 Canvas graphics that adapt to any screen size, desktop or mobile.  
 - **Light & Dark Themes** – Switch between light and dark mode with a single click.  
@@ -37,7 +37,7 @@ Play the game right in your browser (no install needed):
 - **Multiple Inputs** – Play with touch, mouse clicks, or keyboard (Space bar to start/pause).  
 
 
-## How it Works (Game Logic) 📝ℹ️
+## 📝ℹ️ How it Works (Game Logic) 
 
 - The game runs completely in your browser using **HTML5 canvas** for graphics.  
 - A continuous game loop makes the tiles fall smoothly down the screen.  
@@ -54,7 +54,7 @@ Play the game right in your browser (no install needed):
 
 ---
 
-## Open Source and Contributing 🤝🛠️
+## 🤝🛠️ Open Source and Contributing 
 
 - **Rhythm Rush** is open source under the MIT License.  
 - Anyone is welcome to use it, improve it, or share new ideas.  
