@@ -12,21 +12,10 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 
     https://adityapatil343.github.io/RhythmRush/
 
-## Features ⚙️✨
-
-- **Responsive Gameplay** – Smooth HTML5 Canvas graphics that adapt to any screen size, desktop or mobile.  
-- **Light & Dark Themes** – Switch between light and dark mode with a single click.  
-- **Scoring & High Score** – Live score updates and your best score saved locally in the browser.  
-- **Audio Feedback** – Simple sound effects for hits and a unique tone when the game ends.  
-- **Pause & Resume** – Take a break anytime and continue right where you left off.  
-- **Multiple Inputs** – Play with touch, mouse clicks, or keyboard (Space bar to start/pause).  
-
 ## How to Play 🤔💡
 
 - **Start the game:** Click the “Play” button on the screen (or press the **Space** key) to begin a round.  
----
----
----
+
 - **Tap the tiles:** Black tiles will start falling down through four columns. Tap each tile as it reaches the horizontal *hit line* at the bottom of the screen.  
 
 - **Score points:** Each successful tile tap earns you 1 point. The tile will light up or flash to indicate a correct hit.  
@@ -36,6 +25,18 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 - **Pause/Resume:** You can pause the game by clicking **Pause** (or pressing **Space**). To continue, press **Space** again or click the **Resume** button.  
 
 - **High score:** After the game is over, your final score is shown and compared to your best score. Try again to beat it!  
+
+---
+
+## Features ⚙️✨
+
+- **Responsive Gameplay** – Smooth HTML5 Canvas graphics that adapt to any screen size, desktop or mobile.  
+- **Light & Dark Themes** – Switch between light and dark mode with a single click.  
+- **Scoring & High Score** – Live score updates and your best score saved locally in the browser.  
+- **Audio Feedback** – Simple sound effects for hits and a unique tone when the game ends.  
+- **Pause & Resume** – Take a break anytime and continue right where you left off.  
+- **Multiple Inputs** – Play with touch, mouse clicks, or keyboard (Space bar to start/pause).  
+
 
 ## How it Works (Game Logic) 📝ℹ️
 
