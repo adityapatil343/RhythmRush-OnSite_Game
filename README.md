@@ -24,7 +24,9 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 ## How to Play 🤔💡
 
 - **Start the game:** Click the “Play” button on the screen (or press the **Space** key) to begin a round.  
-
+---
+---
+---
 - **Tap the tiles:** Black tiles will start falling down through four columns. Tap each tile as it reaches the horizontal *hit line* at the bottom of the screen.  
 
 - **Score points:** Each successful tile tap earns you 1 point. The tile will light up or flash to indicate a correct hit.  
