@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Updated game title -->
+  <title>Rhythm Rush</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Site branding and repo link -->
+  <header class="site-header">
+    <div class="site-title">Rhythm Rush</div>
+    <div class="site-links">
+      <!-- GitHub link will be updated once the repo is created -->
+      <a id="githubLink" href="#" target="_blank" rel="noopener">🐙 GitHub</a>
+    </div>
+  </header>
+
+  <header class="hud">
+    <div class="score">Score: <span id="score">0</span></div>
+    <div class="controls">
+      <button id="pauseBtn">Pause</button>
+      <button id="startBtn">Play</button>
+      <button id="themeBtn" title="Toggle light/dark theme">Theme</button>
+    </div>
+    <div class="highscore">Best: <span id="highScore">0</span></div>
+  </header>
+
+  <main class="game-wrap">
+    <canvas id="gameCanvas" tabindex="0"></canvas>
+
+    <div id="overlay" class="overlay hidden">
+      <div class="overlay-card" id="overlayCard">
+        <h1 id="overlayTitle">How to Play</h1>
+
+        <!-- Changed to a flexible container so JS can inject richer HTML for instructions -->
+        <div id="overlayText" class="instructions">
+          <ul>
+            <li><strong>Tap the black tiles</strong> as they cross the gray hit line near the bottom.</li>
+            <li><strong>Correct hit</strong> = +1 point. Tiles light up when hit.</li>
+            <li><strong>Wrong tap</strong> (tapping where there is no tile) or <strong>missing a tile</strong> ends the game.</li>
+            <li>Controls: tap with finger, click with mouse. Press <strong>Space</strong> to start/pause on keyboard.</li>
+            <li>Try to beat your best score — it's saved locally in your browser.</li>
+          </ul>
+        </div>
+
+        <div class="overlay-actions">
+          <button id="overlayPlayBtn">Play</button>
+          <button id="retryBtn">Retry</button>
+          <button id="quitBtn">Quit</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

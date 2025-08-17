@@ -1,0 +1,233 @@
+/*
+  Theme variables
+  Updated to provide a softer pastel palette and modern accent colors.  
+  The accent gradient is used on call‑to‑action buttons and interactive elements.  
+*/
+:root {
+  --bg: #f7faff;
+  --panel: #ffffff;
+  --tile: #222;
+  --hit-zone: #007aff;
+  --accent: #5e60ce;
+  --ui: #222;
+  --accent-gradient: linear-gradient(90deg, #5e60ce 0%, #7e60d9 100%);
+  --button-hover: #4e5cdc;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+
+body {
+  /* Soft diagonal gradient background for a polished look */
+  background: linear-gradient(145deg, var(--bg) 0%, #eef5ff 100%);
+  color: var(--ui);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.hud{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 16px;
+  gap:12px;
+  background:transparent;
+}
+
+.hud .score,
+.hud .highscore {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.controls button{
+  margin-left:8px;
+  padding:8px 12px;
+  border-radius:8px;
+  border: none;
+  background: var(--accent-gradient);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+/* hide the redundant start/play button in HUD; overlay play button is used */
+#startBtn {
+  display: none;
+}
+
+/* button hover and active states */
+.controls button:hover,
+.overlay-actions button:hover {
+  background: var(--button-hover);
+}
+.controls button:active,
+.overlay-actions button:active {
+  transform: scale(0.96);
+}
+
+.game-wrap{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:12px;
+}
+
+canvas{
+  width:100%;
+  max-width:520px;
+  height:calc(min(90vh,880px));
+  background: linear-gradient(#fff,#f2f6ff);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(19,23,36,0.08);
+  touch-action: none;
+  display: block;
+}
+
+/* overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.35);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
+.overlay-card {
+  background: var(--panel);
+  padding: 24px;
+  border-radius: 14px;
+  width: min(460px, 92%);
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(12, 18, 36, 0.18);
+}
+
+.overlay-card h1 {
+  margin-bottom: 12px;
+  font-size: 1.6rem;
+}
+
+.overlay-card .instructions {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ui);
+}
+
+.overlay-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.overlay-actions button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+/* small screens */
+@media (max-width:420px){
+  .hud{padding:10px}
+  .controls button{padding:8px}
+}
+
+/* site header with logo and repo link */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: transparent;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--ui);
+}
+
+.site-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.4rem;
+}
+
+.site-links a {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.site-links a:hover {
+  opacity: 0.8;
+}
+
+/* theme toggle button styling similar to other controls */
+#themeBtn {
+  background: var(--accent-gradient);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+#themeBtn:hover {
+  background: var(--button-hover);
+}
+#themeBtn:active {
+  transform: scale(0.96);
+}
+
+/* dark mode overrides: redefine CSS variables */
+body.dark {
+  --bg: #0e1321;
+  --panel: #1b2540;
+  --tile: #e5e7eb;
+  --hit-zone: #5e60ce;
+  --accent: #5e60ce;
+  --ui: #f5f5fa;
+  --accent-gradient: linear-gradient(90deg, #5e60ce 0%, #3e5ec0 100%);
+  --button-hover: #4e5cdc;
+}
+
+/* shake effect when game over or wrong tap */
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+/* pulse animation for highscore updates */
+.pulse {
+  animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
