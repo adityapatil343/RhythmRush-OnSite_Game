@@ -136,7 +136,7 @@
   function hitLineY() {
     // place hit line around 82% of canvas height
     const rect = canvas.getBoundingClientRect();
-    return rect.height * 0.82;
+    return rect.height * 0.65;
   }
 
   function update(dt) {
