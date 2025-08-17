@@ -38,9 +38,20 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 
 - **High score:** After the game is over, your final score is shown and compared to your best score. Try again to beat it!  
 
-## Project Logic Overview
+## How it Works (Game Logic)
 
-Behind the scenes, Rhythm Rush runs entirely in the browser using an HTML5 canvas and a continuous game loop to animate the falling tiles. The game spawns tiles at random in one of four columns, and as time goes on, the tiles fall faster and appear more frequently to increase the challenge. When a tile is tapped at the correct time (as it crosses the hit area), the game registers a “hit” — a tone plays and the score increases. If the current score surpasses the previous high score, the stored high score is updated in local storage. Conversely, if the player misses a tile or taps incorrectly, the game triggers a Game Over state (accompanied by a sound effect and an overlay showing the final score and best score).
+- The game runs completely in your browser using **HTML5 canvas** for graphics.  
+- A continuous game loop makes the tiles fall smoothly down the screen.  
+- New tiles appear randomly in one of four columns. As time passes, they drop faster and more often to make the game harder.  
+- When you tap a tile right as it crosses the hit line:
+  - The game counts it as a **hit**.  
+  - A short tone plays for feedback.  
+  - Your score goes up by 1.  
+- If your score beats your previous best, the new **high score** is saved in your browser so it’s there next time.  
+- If you miss a tile or tap the wrong spot:
+  - The game ends immediately (**Game Over**).  
+  - A different sound plays.  
+  - An overlay shows your final score and your best score.  
 
 ## Open Source and Contributing
 
