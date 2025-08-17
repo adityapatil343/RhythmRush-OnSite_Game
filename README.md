@@ -26,17 +26,12 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 
 ## How to Play
 
-Start the game: Click the “Play” button on the screen (or press the Space key) to begin a round.
-
-Tap the tiles: Black tiles will start falling down through four columns. Tap each tile as it reaches the horizontal hit line at the bottom of the screen.
-
-Score points: Each successful tile tap earns you 1 point. The tile will light up or flash to indicate a correct hit.
-
-Avoid misses: If a tile passes the hit line without being tapped, or if you tap when no tile is there, the game ends immediately (instant Game Over).
-
-Pause/Resume: You can pause the game by clicking Pause (or pressing Space). To continue, press Space again or click the Resume button (which replaces Pause when the game is paused).
-
-High score: After the game is over, your final score is shown and compared to your best score. Try again to beat your high score in the next round!
+**Start the game:** Click the “Play” button (or press **Space**) to begin.<br><br>
+**Tap the tiles:** Black tiles will fall through four columns. Tap each tile as it crosses the hit line.<br><br>
+**Score points:** Each successful tile tap earns +1 point. Tiles flash when hit.<br><br>
+**Avoid misses:** Missing a tile or tapping incorrectly ends the game.<br><br>
+**Pause/Resume:** Click **Pause** (or press **Space**) to pause. Resume with the same control.<br><br>
+**High score:** After the game, your score is shown with your best record.
 
 ## Project Logic Overview
 
