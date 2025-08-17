@@ -55,4 +55,9 @@ Try the game in your browser: Rhythm Rush on GitHub Pages. (No installation requ
 
 ## Open Source and Contributing
 
-Rhythm Rush is an open-source project (released under the MIT License), and others are welcome to contribute. If you find a bug or have an idea for an enhancement, feel free to open an issue or submit a pull request on the GitHub repository. We appreciate feedback and contributions from the community to help make Rhythm Rush even better.
+- **Rhythm Rush** is open source under the MIT License.  
+- Anyone is welcome to use it, improve it, or share new ideas.  
+- Found a bug or have a feature in mind?  
+  - Open an issue in the GitHub repo, or  
+  - Send a pull request with your changes.  
+- All feedback and contributions are appreciated — the goal is to keep making Rhythm Rush better together.  
