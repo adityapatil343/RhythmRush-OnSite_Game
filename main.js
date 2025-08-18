@@ -207,15 +207,16 @@
       ctx.fillRect(i * colW - 1, 0, 2, h);
     }
 
-    // hit line
+    // hit line with height = 66% of tile height
     const hitY = hitLineY();
+    const tH   = tileHeight();
+    const lineHeight = tH * 0.66;
     ctx.fillStyle = 'rgba(0, 122, 255, 0.12)';
-    ctx.fillRect(0, hitY - 2, w, 4);
+    ctx.fillRect(0, hitY - lineHeight / 2, w, lineHeight);
 
     // tiles
-    const tH = tileHeight();
     for (const t of state.tiles) {
-      const x = t.col * colW + 8;
+      const x     = t.col * colW + 8;
       const tileW = colW - 16;
       const tileH = tH;
 
