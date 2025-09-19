@@ -9,7 +9,7 @@ Built with HTML5 Canvas and JavaScript, it works smoothly on both desktop and mo
 
 Play the game right in your browser (no install needed): 
 
-    https://adityapatil343.github.io/RhythmRush/
+    https://adityapatil343.github.io/RhythmRush-OnSite_Game/
 
 ## 🤔💡 How to Play 
 
